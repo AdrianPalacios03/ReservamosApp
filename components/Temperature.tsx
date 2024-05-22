@@ -6,6 +6,13 @@ import { TemperatureProps } from "@/interfaces/ComponentProps"
 import { Ionicons } from '@expo/vector-icons';
 
 export const Temperature = ({min, max, day, coldest = false, hottest = false}: TemperatureProps) => {
+
+    const weekDay = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+    // Función para sumar días y obtener el nombre del día
+    const getNameDay = (day: number) => weekDay[new Date(new Date().setDate(new Date().getDate() + day)).getDay()];
+
+
     return (
         <ThemedView style={[
             styles.container,
@@ -31,17 +38,17 @@ export const Temperature = ({min, max, day, coldest = false, hottest = false}: T
             }
             <ThemedText style={styles.text} type="defaultSemiBold">
                 <Ionicons name="thermometer-outline" size={16} color="black" />
-                Min: {min}
+                Min: {min}° C
             </ThemedText>
             <ThemedText style={styles.text}  type="defaultSemiBold">
                 <Ionicons name="thermometer-outline" size={16} color="black" />
-                Max: {max}
+                Max: {max}° C
             </ThemedText>
             <ThemedText style={[styles.text,styles.day]}  type="defaultSemiBold">
                 {
                     day === 0 ? 'Hoy' 
                     : day === 1 ? 'Mañana'
-                    : `En ${day + 1} días`
+                    : getNameDay(day)
                 }
             </ThemedText>
         </ThemedView>

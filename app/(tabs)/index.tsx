@@ -15,6 +15,7 @@ import { City } from '@/components/City';
 export default function HomeScreen() {
 
   const [cityValue, setCityValue] = useState('');
+  const [pinnedCities, setPinnedCities] = useState<CityType[]>([]);
   const [cities, setCities] = useState<CityType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,6 +56,21 @@ export default function HomeScreen() {
         </ThemedView>
 
         {
+          pinnedCities.map((city) => (
+            <City
+              key={city.id}
+              display={city.display}
+              country={city.country}
+              lat={city.lat}
+              long={city.long}
+              weather={city.weather}
+              pinned
+              onClick={() => {setPinnedCities(pinnedCities.filter((c) => c.id !== city.id))}}
+            />
+          ))
+        }
+
+        {
           isLoading ? 
           <ActivityIndicator size="large"/>
           :
@@ -66,6 +82,7 @@ export default function HomeScreen() {
               lat={city.lat}
               long={city.long}
               weather={city.weather}
+              onClick={() => {setPinnedCities([...pinnedCities, city])}}
             />
           ))
         }

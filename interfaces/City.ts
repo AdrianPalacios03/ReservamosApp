@@ -5,6 +5,8 @@ export interface City {
     lat: string;
     long: string;
     weather?: CityWeather;
+    pinned?: boolean;
+    onClick?: () => void;
 }
 
 export interface CityWeather {
