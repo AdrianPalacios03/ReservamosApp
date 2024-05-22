@@ -72,7 +72,7 @@ export const City = ({display, country, weather, pinned = false, onClick}: CityP
                         />
                     </View>
                 :
-                    <ThemedText>Hubo un error al recuperar las temperaturas o no existen en nuestros registros.</ThemedText>
+                    <ThemedText>Hubo un error al recuperar las temperaturas o no existen en nuestros registros. O hay demasiadas consultas a nuestra API key.</ThemedText>
             }
         </ThemedView>
     )
